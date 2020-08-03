@@ -1,10 +1,10 @@
 package com.poc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poc.model.Customer;
 import com.poc.model.Student;
 import com.poc.service.ExcelService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,11 +18,8 @@ import java.util.List;
 @Log4j2
 public class ProjectStarter implements CommandLineRunner {
 
-
-    ObjectMapper objectMapper = new ObjectMapper();
-
-    ExcelService excelService = new ExcelService();
-
+    @Autowired
+    ExcelService excelService;
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectStarter.class, args);
@@ -42,6 +39,6 @@ public class ProjectStarter implements CommandLineRunner {
             Student myPojo = factory.manufacturePojo(Student.class);
             students.add(myPojo);
         }
-        excelService.writeSheetPerObjList("dummy.xlsx", customers,students);
+        excelService.writeSheetPerObjList("dummy.xlsx", customers, students);
     }
 }
