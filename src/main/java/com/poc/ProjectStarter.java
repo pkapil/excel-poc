@@ -29,15 +29,11 @@ public class ProjectStarter implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //Create DUMMY data
         PodamFactory factory = new PodamFactoryImpl();
-        List<Customer> customers = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Customer myPojo = factory.manufacturePojo(Customer.class);
-            customers.add(myPojo);
-        }
         List<Student> students = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Student myPojo = factory.manufacturePojo(Student.class);
-            students.add(myPojo);
+        List<Customer> customers = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            customers.add(factory.manufacturePojo(Customer.class));
+            students.add(factory.manufacturePojo(Student.class));
         }
         excelService.writeSheetPerObjList("dummy.xlsx", customers, students);
     }
