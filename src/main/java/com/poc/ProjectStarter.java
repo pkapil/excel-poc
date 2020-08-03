@@ -2,6 +2,7 @@ package com.poc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poc.model.Customer;
+import com.poc.model.Student;
 import com.poc.service.ExcelService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +37,11 @@ public class ProjectStarter implements CommandLineRunner {
             Customer myPojo = factory.manufacturePojo(Customer.class);
             customers.add(myPojo);
         }
-        excelService.writeSheetPerObjList("dummy.xlsx", customers);
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Student myPojo = factory.manufacturePojo(Student.class);
+            students.add(myPojo);
+        }
+        excelService.writeSheetPerObjList("dummy.xlsx", customers,students);
     }
 }
